@@ -1,0 +1,12 @@
+[
+  { "_id": "lesson-001", "topic": "Science", "title": "Little Lab Explorers", "location": "Hendon", "price": 18, "space": 5, "icon": "fa-flask", "teacherIds": ["teacher-001"] },
+  { "_id": "lesson-002", "topic": "Art", "title": "Colour & Create", "location": "Colindale", "price": 16, "space": 5, "icon": "fa-palette", "teacherIds": ["teacher-002"] },
+  { "_id": "lesson-003", "topic": "Music", "title": "Rhythm Makers", "location": "Brent Cross", "price": 20, "space": 5, "icon": "fa-music", "teacherIds": ["teacher-003"] },
+  { "_id": "lesson-004", "topic": "Mathematics", "title": "Maths in Motion", "location": "Golders Green", "price": 17, "space": 5, "icon": "fa-calculator", "teacherIds": ["teacher-001"] },
+  { "_id": "lesson-005", "topic": "Coding", "title": "Code Your First Game", "location": "Hendon", "price": 22, "space": 5, "icon": "fa-laptop-code", "teacherIds": ["teacher-004"] },
+  { "_id": "lesson-006", "topic": "Drama", "title": "Stage Stars", "location": "Mill Hill", "price": 19, "space": 5, "icon": "fa-masks-theater", "teacherIds": ["teacher-005"] },
+  { "_id": "lesson-007", "topic": "Languages", "title": "Spanish Club", "location": "Colindale", "price": 15, "space": 5, "icon": "fa-comments", "teacherIds": ["teacher-002"] },
+  { "_id": "lesson-008", "topic": "Nature", "title": "Young Gardeners", "location": "Finchley", "price": 16, "space": 5, "icon": "fa-seedling", "teacherIds": ["teacher-003"] },
+  { "_id": "lesson-009", "topic": "Design", "title": "Build It Better", "location": "Brent Cross", "price": 21, "space": 5, "icon": "fa-cubes", "teacherIds": ["teacher-004"] },
+  { "_id": "lesson-010", "topic": "Sports", "title": "Team Play", "location": "Golders Green", "price": 14, "space": 5, "icon": "fa-volleyball", "teacherIds": ["teacher-005"] }
+]
