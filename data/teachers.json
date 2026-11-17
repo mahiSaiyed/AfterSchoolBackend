@@ -1,0 +1,7 @@
+[
+  { "_id": "teacher-001", "firstName": "Maya", "lastName": "Patel", "lessonIds": ["lesson-001", "lesson-004"] },
+  { "_id": "teacher-002", "firstName": "Oliver", "lastName": "Reed", "lessonIds": ["lesson-002", "lesson-007"] },
+  { "_id": "teacher-003", "firstName": "Amira", "lastName": "Khan", "lessonIds": ["lesson-003", "lesson-008"] },
+  { "_id": "teacher-004", "firstName": "Leo", "lastName": "Brooks", "lessonIds": ["lesson-005", "lesson-009"] },
+  { "_id": "teacher-005", "firstName": "Sofia", "lastName": "Green", "lessonIds": ["lesson-006", "lesson-010"] }
+]
