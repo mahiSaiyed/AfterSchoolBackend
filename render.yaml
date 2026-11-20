@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: student-number-after-school
+    runtime: node
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: MONGODB_URI
+        sync: false
+      - key: DB_NAME
+        value: after_school
