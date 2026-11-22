@@ -49,6 +49,7 @@ app.use((request, response, next) => {
   next();
 });
 
+// Serve static images from the public/images directory
 app.use('/images', express.static(path.join(currentDirectory, 'public', 'images')));
 app.use('/images', (request, response) => response.status(404).json({ error: 'Image not found.' }));
 
@@ -73,28 +74,12 @@ async function getLessons(request) {
     return { ...lesson, teachers };
   }));
 }
-
+// Route that returns all lessons, optionally filtered by teacherId
 app.get('/lessons', handleRoute(async (request, response) => {
   response.json(await getLessons(request));
 }));
 
-app.get('/search', handleRoute(async (request, response) => {
-  const query = String(request.query.q || '').trim().toLocaleLowerCase();
-  const lessons = await getLessons(request);
-  if (!query) return response.json(lessons);
-  response.json(lessons.filter((lesson) => [
-    lesson.topic,
-    lesson.title,
-    lesson.location,
-    String(lesson.price),
-    String(lesson.space),
-  ].some((value) => String(value || '').toLocaleLowerCase().includes(query))));
-}));
-
-app.get('/teachers', handleRoute(async (request, response) => {
-  response.json(await database.collection('teachers').find().toArray());
-}));
-
+// Route that returns orders
 app.post('/orders', handleRoute(async (request, response) => {
   const { name, phoneNumber, lessonIDs, space, items } = request.body || {};
   if (typeof name !== 'string' || !/^[A-Za-z]+(?: [A-Za-z]+)*$/.test(name.trim())) {
@@ -124,6 +109,7 @@ app.post('/orders', handleRoute(async (request, response) => {
   response.status(201).json({ ...order, _id: result.insertedId });
 }));
 
+// Route that updates a lesson by ID
 app.put('/lessons/:id', handleRoute(async (request, response) => {
   const updates = request.body;
   if (!updates || typeof updates !== 'object' || Array.isArray(updates) ||
@@ -142,6 +128,26 @@ app.put('/lessons/:id', handleRoute(async (request, response) => {
   response.json(await database.collection('lessons').findOne({ _id: request.params.id }));
 }));
 
+// Search route that filters lessons based on query parameters
+app.get('/search', handleRoute(async (request, response) => {
+  const query = String(request.query.q || '').trim().toLocaleLowerCase();
+  const lessons = await getLessons(request);
+  if (!query) return response.json(lessons);
+  response.json(lessons.filter((lesson) => [
+    lesson.topic,
+    lesson.title,
+    lesson.location,
+    String(lesson.price),
+    String(lesson.space),
+  ].some((value) => String(value || '').toLocaleLowerCase().includes(query))));
+}));
+
+// Route that returns all teachers
+app.get('/teachers', handleRoute(async (request, response) => {
+  response.json(await database.collection('teachers').find().toArray());
+}));
+
+// Route that returns the total enrolment for a specific lesson
 app.get('/enrolment/:lessonid', handleRoute(async (request, response) => {
   const lessonExists = await database.collection('lessons').findOne(
     { _id: request.params.lessonid },
@@ -158,6 +164,7 @@ app.get('/enrolment/:lessonid', handleRoute(async (request, response) => {
 }));
 
 app.use((request, response) => response.status(404).json({ error: 'Route not found.' }));
+
 app.use((error, request, response, next) => {
   console.error(error);
   if (response.headersSent) return next(error);
